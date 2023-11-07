@@ -1,30 +1,24 @@
-
-import "./App.css"
-import List from "./components/List/List";
-import AddTask from "./components/AddTask/AddTask";
 import { useState } from "react";
+import styles from './App.module.css';
+import List from "./components/List/List";
+import Home from "./components/Home/Home";
+
+
 function App() {
-  const [count, setCount] = useState(1);
-  // console.log(count)
-  // const count = 1;
-  const str = 'str';
-  const arr = ['item2', 'item3', 'item4', 5]
-
-  const handleCount = () => {
-    setCount(2);
-  }
+  const arr = [1, 2, 3, 4];
+  const arr2 = ['Навыки : Написание новостных материалов для сайта и соцсетей;', 'Опыт работы : 0', 'Языки:Kyrgyz-Родной'];
   return (
-
     <>
-      <input />
-      <h1>Todo list</h1>
-      <button onClick={handleCount}>CLICK</button>
-      <AddTask />
-      <List count={count}
-        str={str}
-        arr={arr} />
-    </>
-  )
-}
+      <h1 className={styles.surname}>ZHANATBEK ZHEENBAEV</h1>
+      <Home />
 
+      {
+
+        <List
+          arr2={arr2}
+          arr={arr}
+        />}
+    </>
+  );
+}
 export default App;
