@@ -2,7 +2,8 @@ import { useState } from "react";
 import styles from './App.module.css';
 import List from "./components/List/List";
 import Home from "./components/Home/Home";
-import UserList from "./components/UserList/UserList";
+import Todo from "./components/Todo/Todo";
+
 
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
   return (
     <>
       {
-        <UserList />
+        // <Todo />
+        <Todo />
       /* <h1 className={styles.surname}>ZHANATBEK ZHEENBAEV</h1>
       <Home />
 
