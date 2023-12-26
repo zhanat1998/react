@@ -1,0 +1,58 @@
+.list {
+    padding: 20px 0;
+    list-style: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.task {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(52, 50, 50);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 4px rgb(71, 65, 65);
+    width: 400px;
+}
+
+.btnWrapper {
+    margin-top: 10px;
+    display: flex;
+    justify-content: end;
+    gap: 5px;
+}
+
+.delete {
+    cursor: pointer;
+    padding: 5px 15px;
+    border: none;
+    background-color: rgb(192, 78, 78);
+    color: #fff;
+}
+
+.delete:hover {
+    background-color: rgb(212, 118, 118);
+}
+
+.edit {
+    cursor: pointer;
+    padding: 5px 15px;
+    border: none;
+    background-color: rgb(106, 106, 156);
+    color: #fff;
+}
+
+.edit:hover {
+    background-color: rgb(127, 127, 160);
+}
+
+.title {
+    text-align: center;
+}
+
+.descriprion {
+    font-size: 12px;
+}
