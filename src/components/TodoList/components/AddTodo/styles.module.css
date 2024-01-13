@@ -1,0 +1,43 @@
+.todoForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.label {
+    cursor: pointer;
+}
+
+.addTodo {
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px 60px;
+    border: none;
+    background-color: rgb(48, 182, 104);
+    color: #fff;
+}
+
+.addTodo:hover {
+    background-color: rgb(110, 226, 159);
+}
+
+.editTodo {
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px 60px;
+    border: none;
+    background-color: rgb(177, 199, 34);
+    color: #fff;
+}
+
+.editTodo:hover {
+    background-color: rgb(154, 169, 60);
+}
+
+.input {
+    width: 200px;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 20px;
+}

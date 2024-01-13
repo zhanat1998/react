@@ -1,30 +1,47 @@
-
-import "./App.css"
-import List from "./components/List/List";
-import AddTask from "./components/AddTask/AddTask";
 import { useState } from "react";
+// import styles from "./App.module.css";
+// import styles from ".App.modules.css";
+// import AddTask from "./components/AddTask/AddTask";
+// import List from "./components/List/List";
+// import Count from "./components/Count/Count";
+// import Posts from "./components/Posts/Posts";
+// import UserList from "./components/UserList/UserList";
+import TodoList from "./components/TodoList/TodoList";
+
 function App() {
   const [count, setCount] = useState(1);
-  // console.log(count)
-  // const count = 1;
+  // console.log(count, 'count');
+
+  const arr = ['item 1', 'item 2', 'item 3', 'item 4'];
+  const [a, b, ...c] = arr;
+  // console.log(a, b, c, 'кортедж');
+
   const str = 'str';
-  const arr = ['item2', 'item3', 'item4', 5]
+  const number = 124;
+  const name = 'Benazir';
 
   const handleCount = () => {
     setCount(2);
   }
-  return (
 
+  return (
     <>
-      <input />
-      <h1>Todo list</h1>
-      <button onClick={handleCount}>CLICK</button>
-      <AddTask />
-      <List count={count}
+      <TodoList />
+      {/* <UserList/> */}
+      {/* <Posts/> */}
+      {/* <h1 className={styles.list}>TODO LIST</h1>
+      <Count/>
+      <button onClick={handleCount} >CLICK</button>
+      <AddTask/>
+      <List
+        count={count}
         str={str}
-        arr={arr} />
+        arr={arr}
+        number={number}
+        name={name}
+      /> */}
     </>
-  )
+  );
 }
 
 export default App;
