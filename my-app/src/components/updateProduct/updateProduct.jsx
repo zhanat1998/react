@@ -12,14 +12,14 @@ const UpdateProduct = () => {
     const navigate = useNavigate();
     const params = useParams();
     const onSubmit = (data) => {
-        let product = {
-            title: data.title,
-            description: data.description,
-            price: data.price,
-            image: data.image,
-        };
-        let id = data.id;
-        dispatch(updateProdAction({ id, navigate, ...product }));
+        // let product = {
+        //     title: data.title,
+        //     description: data.description,
+        //     price: data.price,
+        //     image: data.image,
+        // };
+        // let id = data.id;
+        dispatch(updateProdAction({ id: data.id, navigate, ...data }));
     }
 
 
@@ -33,55 +33,15 @@ const UpdateProduct = () => {
         formState: { errors },
         reset
 
-    } = useForm({
-        defaultValues: {
-            id: product.id,
-            title: product.title,
-            description: product.description,
-            price: product.price,
-            image: product.image
-        }
-    });
+    } = useForm();
 
 
     useEffect(() => {
-        reset({
-            id: product.id,
-            title: product.title,
-            description: product.description,
-            price: product.price,
-            image: product.image
-        })
+        reset(product)
     }, [product])
     return (
 
-        // <div>
-        //     <button onClick={toMain}>Отмена</button>
-        //     <form onSubmit={handleSubmit(onSubmit)}>
-        //         <div className="form-row">
-        //             <div className="form-group col-md-6">
-        //                 <input type="text" className="form-control"
-        //                     id="inputEmail4" placeholder="Введите ссылку фото" {...register('image')} />
-        //                 <input type="number" hidden={true}
-        //                     {...register('id')} />
-        //             </div>
 
-        //             <div className="form-group col-md-6">
-        //                 <input type="text"
-        //                     className="form-control" id="inputPassword4"
-        //                     placeholder="Введите название товара" {...register('title')} />
-        //                 <input type="text"
-        //                     className="form-control" id="inputPassword4"
-        //                     placeholder="Введите описание товара" {...register('description')} />
-        //                 <input type="text" className="form-control"
-        //                     id="inputPassword4"
-        //                     placeholder="Введите цену товара" {...register('price')} />
-        //             </div>
-        //         </div>
-        //         <button type="submit" className="btn btn-primary" >Save</button>
-        //     </form>
-
-        // </div>
         <div className={s.block}>
             <form className={s.block__form} onSubmit={handleSubmit(onSubmit)} >
                 <Link to={'/'} className={s.block__btn}><button type='button'>Отмена</button></Link>
@@ -92,16 +52,16 @@ const UpdateProduct = () => {
                         <input type="number" hidden={true}{...register('id')} />
                     </div>
                     <div className={s.block__inp}>
-                        <input className={s.inp} type="text" placeholder='Введите название товара' {...register('title')} />
-                        <span className={s.post__error}>{errors?.title?.message}</span>
+                        <input className={s.inp} placeholder='Введите название товара' {...register('title')} />
+                        <span className={s.post__error}></span>
                         <input className={s.inp} type="text" placeholder='Введите описание товара' {...register('description')} />
-                        <span className={s.post__error}>{errors?.description?.message}</span>
+                        <span className={s.post__error}></span>
                         <input className={s.inp} type="number" placeholder='Введите цену товара' {...register('price')} />
-                        <span className={s.post__error}>{errors?.price?.message}</span>
+                        <span className={s.post__error}></span>
                     </div>
                 </div>
                 <div>
-                    <button className={s.block__btn} type='submit'>Сохранит</button>
+                    <button className={s.block__btn}>Сохранит</button>
                 </div>
             </form>
         </div>

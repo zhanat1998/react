@@ -1,18 +1,20 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch } from "../../hook";
 import { useForm } from "react-hook-form";
 import { createProductAction } from "../../store/shop/action";
 import s from './style.module.scss'
+import { Product } from "../../store/shop/utils";
+export type submitType = (data: Product) => void;
 const CreateProduct = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
-
-    const onSubmit = (data) => {
-        let product = {
+    const onSubmit: submitType = (data) => {
+        const product = {
             title: data.title,
             description: data.description,
             price: data.price,
-            image: data.image
+            image: data.image,
+            id: data.id,
         }
         dispatch(createProductAction({ navigate, ...product }));
     }
@@ -23,7 +25,8 @@ const CreateProduct = () => {
         handleSubmit,
         formState: { errors }
 
-    } = useForm();
+    } = useForm<Product>();
+
 
     return (
         <div className={s.block}>
@@ -37,11 +40,8 @@ const CreateProduct = () => {
                     </div>
                     <div className={s.block__inp}>
                         <input className={s.inp} type="text" placeholder='Введите название товара' {...register('title')} />
-                        <span className={s.post__error}>{errors?.title?.message}</span>
                         <input className={s.inp} type="text" placeholder='Введите описание товара' {...register('description')} />
-                        <span className={s.post__error}>{errors?.description?.message}</span>
                         <input className={s.inp} type="number" placeholder='Введите цену товара' {...register('price')} />
-                        <span className={s.post__error}>{errors?.price?.message}</span>
                     </div>
                 </div>
                 <div>

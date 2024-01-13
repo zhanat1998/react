@@ -8,6 +8,7 @@ const EachCart = ({ item }) => {
         dispatch(removeFromCartAction(item.product.id))
             .then(() => dispatch(getCartAction()))
     }
+
     return (
         <div className={s.card}>
             <img src={item.product.image} className={s.cardImg} alt="" />

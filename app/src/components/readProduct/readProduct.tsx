@@ -1,16 +1,19 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hook";
 import Navbar from "../navbar"
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { readProductSlice } from "../../store/shop/action";
+import { readProductAction } from "../../store/shop/action";
 import s from './style.module.scss'
-const ReadProduct = () => {
-    const product = useSelector((state) => state.readReducer.data)
-    const dispatch = useDispatch();
-    const params = useParams();
+import { Product } from "../../store/shop/utils";
+const ReadProduct: React.FC<Product> = () => {
+    const producta = useAppSelector((state) => state.shopReducer.product)
+    const dispatch = useAppDispatch();
+    console.log(producta, 'prod')
+    const { Pid } = useParams();
+    console.log(Pid, 'pid ')
     useEffect(() => {
-        dispatch(readProductSlice(params.id))
-    }, [])
+        if (Pid) { dispatch(readProductAction(Pid as string)) }
+    }, [Pid])
     return (
         <div>
             <Navbar />
@@ -19,13 +22,13 @@ const ReadProduct = () => {
                     <div className={s.info} >
                         <ul className={s.ul}>
                             <li className={s.main}><Link to={'/'}>Вернуться</Link></li>
-                            <h1 className={s.info__title} >{product.title}</h1>
-                            <li className={s.info__card} key={product.id}>
+                            <h1 className={s.info__title} >{producta.title}</h1>
+                            <li className={s.info__card} key={producta.id}>
                                 <div className={s.info__div}>
-                                    <img className={s.info__image} src={product.image} />
+                                    <img className={s.info__image} src={producta.image} />
                                 </div>
                                 <div className={s.description}>
-                                    <p className={s.info__desc}><h3>Описание</h3> <br />{product.description}</p>
+                                    <p className={s.info__desc}><h3>Описание</h3> <br />{producta.description}</p>
                                 </div>
                             </li>
 

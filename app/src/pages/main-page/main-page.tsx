@@ -1,15 +1,19 @@
 import { useEffect } from "react";
 import Navbar from "../../components/navbar";
 import ProductCard from "../../components/product/product-card";
-import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../hook";
 import { getProductsAction } from "../../store/shop/action";
 import { Link, useNavigate } from "react-router-dom";
 import s from './style.module.scss'
 import SearchBar from "../../components/searchBar/searchBar";
-import { reset, sortByPrice, sortNew, sortOld } from "../../store/shop/slice";
-const MainPage = () => {
-    const dispatch = useDispatch();
-    const products = useSelector((state) => state.shopReducer.data)
+import { Product } from "../../store/shop/utils";
+type ProductType = {
+    products: Product[];
+}
+const MainPage: React.FC<ProductType> = () => {
+    const dispatch = useAppDispatch();
+    const products = useAppSelector((state) => state.shopReducer.products)
+    console.log("productsaa: ", products)
     const navigate = useNavigate();
     const toCreateProduct = () => {
         navigate('/add-product')
@@ -17,26 +21,7 @@ const MainPage = () => {
     useEffect(() => {
         dispatch(getProductsAction())
     }, [])
-    const handleSortPrice = (e) => {
-        e.preventDefault();
-        dispatch(sortByPrice());
 
-    };
-    const handleSortNew = (e) => {
-        e.preventDefault();
-        dispatch(sortNew());
-
-    };
-    const handleSortOld = (e) => {
-        e.preventDefault();
-        dispatch(sortOld());
-
-    }
-    const handleReset = (e) => {
-        e.preventDefault();
-        dispatch(reset());
-
-    }
     const handleLogout = () => {
         localStorage.removeItem('token');
         window.location.reload()
@@ -54,14 +39,14 @@ const MainPage = () => {
             <SearchBar />
             <div className={s.sort}>
                 <h5>Сортировать по:</h5>
-                <button onClick={handleSortPrice}>Ценам</button>
-                <button onClick={handleSortNew}>Сначала новые</button>
-                <button onClick={handleSortOld}>Сначала старые</button>
-                <button onClick={handleReset}>Без фильтров</button>
+                <button >Ценам</button>
+                <button >Сначала новые</button>
+                <button >Сначала старые</button>
+                <button >Без фильтров</button>
             </div>
 
             <ul className={s.main__card}>
-                {products.map(product => <ProductCard product={product} key={product.id} />)}
+                {products.map((product) => <ProductCard {...product} key={product.id} />)}
             </ul>
             <ul className={s.ul__post}>
                 <li className={s.post__li} onClick={toCreateProduct}>Создать товар</li>
